@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Product} from './list'
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -7,6 +8,23 @@ import {Product} from './list'
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  products: Product[] = [
-  ];
+  products: Product[] = [];
+
+  formGroupProduct : FormGroup;
+
+  constructor(private formBuilder:
+  FormBuilder){
+    this.formGroupProduct =
+  formBuilder.group({
+    id: [''],
+    name: [''],
+    describe: [''],
+    price: [''],
+    quant: ['']
+  });
+  }
+
+  save(){
+    this.products.push(this.formGroupProduct.value);
+  }
 }
