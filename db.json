@@ -1,0 +1,8 @@
+{
+  "Product": [
+    {"id":1, "name":"George","describe":"item de comer","price":240,"quant":4},
+    {"id":2, "name":"Claudia","describe":"item de comer","price":20,"quant":4},
+    {"id":3, "name":"Lucas","describe":"item de comer","price":40,"quant":4},
+    {"id":3, "name":"Manuele","describe":"item de comer","price":24,"quant":4}
+  ]
+  }
