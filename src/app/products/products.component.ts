@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ProductsService } from './../products.service';
+import { Component, OnInit } from '@angular/core';
 import {Product} from './list'
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -7,13 +8,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
   products: Product[] = [];
 
   formGroupProduct : FormGroup;
 
   constructor(private formBuilder:
-  FormBuilder){
+  FormBuilder, private service: ProductsService){
     this.formGroupProduct =
   formBuilder.group({
     id: [''],
@@ -22,6 +23,15 @@ export class ProductsComponent {
     price: [''],
     quant: ['']
   });
+  }
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts(){
+    this.service.getProducts().subscribe({
+      next: data => this.products = data
+    })
   }
 
   save(){
