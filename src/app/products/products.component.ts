@@ -35,6 +35,9 @@ export class ProductsComponent implements OnInit{
   }
 
   save(){
-    this.products.push(this.formGroupProduct.value);
+    this.service.save(this.formGroupProduct.value).subscribe({
+      next: data => this.products.push(data)
+    });
+
   }
 }
