@@ -61,8 +61,6 @@
   </div>
   </div>
   </div>
-  </form>
-  <form>
     <h2 class="mt-5 text-center">Produtos</h2>
     <table class="table table-striped">
       <thead>
@@ -72,6 +70,8 @@
           <th scope="col">Descrição</th>
           <th scope="col">Preço</th>
           <th scope="col">Quantidade</th>
+          <th class="d-flex justify-content-end"
+        scope="col">Opcoes</th>
         </tr>
       </thead>
       <tbody>
@@ -81,6 +81,9 @@
         <td>{{product.describe}}</td>
         <td>{{product.price}}</td>
         <td>{{product.quant}}</td>
+        <td class ="d-flex justify-content-end">
+          <button class="btn btn-primary "(click)="delete(product)">Deletar</button>
+        </td>
         </tr>
       </tbody>
     </table>

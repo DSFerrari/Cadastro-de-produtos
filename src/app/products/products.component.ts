@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit{
   products: Product[] = [];
 
   formGroupProduct : FormGroup;
+  isEditing: boolean = false;
 
   constructor(private formBuilder:
   FormBuilder, private service: ProductsService){
@@ -38,6 +39,9 @@ export class ProductsComponent implements OnInit{
     this.service.save(this.formGroupProduct.value).subscribe({
       next: data => this.products.push(data)
     });
-
   }
+  delete(Product:Product){
+    this.service.delete(Product).subscribe({
+      next: () => this.loadProducts(),});
+   }
 }

@@ -1,32 +1,11 @@
 {
   "Product": [
     {
-      "id": 1,
-      "name": "Negresco",
-      "describe": "Bolacha",
-      "price": 2.00,
-      "quant": 20
-    },
-    {
-      "id": 2,
-      "name": "Camil 5KG",
-      "describe": "Arroz",
-      "price": 20.45,
-      "quant": 9
-    },
-    {
-      "id": 3,
-      "name": "Doritos 84g",
+      "id": "1",
+      "name": "Cheetos",
       "describe": "Salgadinho",
-      "price": 8.40,
-      "quant": 11
-    },
-    {
-      "id": 4,
-      "name": "Chettos 120g",
-      "describe": "Salgadinho",
-      "price": 14.80,
-      "quant": 20
+      "price": 12.5,
+      "quant": 6
     }
   ]
 }
