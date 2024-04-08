@@ -36,12 +36,28 @@ export class ProductsComponent implements OnInit{
   }
 
   save(){
+    if(this.isEditing){
+      this.service.update(this.formGroupProduct.value).subscribe({
+        next : () => {
+          this.loadProducts();
+          this.isEditing = false;
+        }
+      })
+    }
+    else{
     this.service.save(this.formGroupProduct.value).subscribe({
       next: data => this.products.push(data)
     });
   }
+this.formGroupProduct.reset();
+}
   delete(Product:Product){
     this.service.delete(Product).subscribe({
       next: () => this.loadProducts(),});
+   }
+
+   edit(Product:Product){
+    this.formGroupProduct.setValue(Product);
+    this.isEditing = true;
    }
 }
