@@ -12,6 +12,12 @@
       id="nome"
       formControlName="name"
       />
+    <small *ngIf="submited && name.hasError('minlength')" class="text-danger">
+    * o nome do produto tem que ter no mínimo três caracteres
+  </small>
+  <small *ngIf="submited && name.hasError('required')" class="text-danger">
+  * o Nome é requerido
+</small>
     </div>
   </div>
     <div class="mb-3">

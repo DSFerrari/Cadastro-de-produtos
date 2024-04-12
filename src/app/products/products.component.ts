@@ -1,7 +1,7 @@
 import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
 import {Product} from './list'
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -13,13 +13,14 @@ export class ProductsComponent implements OnInit{
 
   formGroupProduct : FormGroup;
   isEditing: boolean = false;
+  submited: boolean = false;
 
   constructor(private formBuilder:
   FormBuilder, private service: ProductsService){
     this.formGroupProduct =
   formBuilder.group({
     id: [''],
-    name: [''],
+    name: ['',[Validators.minLength(3),Validators.required]],
     describe: [''],
     price: [''],
     quant: ['']
@@ -36,21 +37,25 @@ export class ProductsComponent implements OnInit{
   }
 
   save(){
+    this.submited = true;
+    if (this.formGroupProduct.valid){
     if(this.isEditing){
       this.service.update(this.formGroupProduct.value).subscribe({
         next : () => {
           this.loadProducts();
           this.isEditing = false;
+          this.submited = false;
         }
       })
     }
     else{
     this.service.save(this.formGroupProduct.value).subscribe({
-      next: data => this.products.push(data)
+      next: data => {this.products.push(data),this.submited = false;}
     });
   }
 this.formGroupProduct.reset();
 }
+  }
   delete(Product:Product){
     this.service.delete(Product).subscribe({
       next: () => this.loadProducts(),});
@@ -60,4 +65,7 @@ this.formGroupProduct.reset();
     this.formGroupProduct.setValue(Product);
     this.isEditing = true;
    }
-}
+   get name(): any{
+    return this.formGroupProduct.get("name");
+   }
+  }
