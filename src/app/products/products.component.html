@@ -29,11 +29,11 @@
     formControlName="describe"
     >
    </textarea>
-  <small *ngIf="submited && name.hasError('minlength')" class="text-danger">
-    * o nome do produto tem que ter no mínimo três caracteres
+  <small *ngIf="submited && describe.hasError('minlength')" class="text-danger">
+    * a descrição do produto tem que ter no mínimo três caracteres
   </small>
-  <small *ngIf="submited && name.hasError('required')" class="text-danger">
-  * o Nome é requerido
+  <small *ngIf="submited && describe.hasError('required')" class="text-danger">
+  * a descrição é requerida
 </small>
 </div>
   <div class="row">
@@ -45,6 +45,12 @@
     id="preço"
     formControlName="price"
   />
+  <small *ngIf="submited && price.hasError('min')" class="text-danger">
+    * o produto tem que custar no mínimo 0.1 reais
+  </small>
+  <small *ngIf="submited && price.hasError('required')" class="text-danger">
+    * o Preço é requerido
+</small>
   </div>
   <div class="col-sm-6">
     <label for="quantidade" class="form-label">Quantidade</label>
@@ -53,7 +59,13 @@
     class="form-control"
     id="quantidade"
     formControlName="quant"
-  />
+    />
+    <small *ngIf="submited && quant.hasError('min')" class="text-danger">
+      * o produto tem que ter no mínimo 1 quantidade
+    </small>
+    <small *ngIf="submited && quant.hasError('required')" class="text-danger">
+      * a quantidade é requerida
+  </small>
   </div>
   </div>
   <div class="row mt-3">
