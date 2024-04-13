@@ -21,9 +21,9 @@ export class ProductsComponent implements OnInit{
   formBuilder.group({
     id: [''],
     name: ['',[Validators.minLength(3),Validators.required]],
-    describe: [''],
-    price: [''],
-    quant: ['']
+    describe: ['',[Validators.minLength(2),Validators.required]],
+    price: ['',[Validators.min(0.1),Validators.required]],
+    quant: ['',[Validators.min(1),Validators.required]]
   });
   }
   ngOnInit(): void {
@@ -68,4 +68,13 @@ this.formGroupProduct.reset();
    get name(): any{
     return this.formGroupProduct.get("name");
    }
+   get describe(): any{
+    return this.formGroupProduct.get("describe");
+  }
+  get price(): any{
+    return this.formGroupProduct.get("price");
+  }
+  get quant(): any{
+    return this.formGroupProduct.get("quant");
+  }
   }

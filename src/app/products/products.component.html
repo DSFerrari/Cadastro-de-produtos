@@ -28,7 +28,14 @@
     id="descrição"
     formControlName="describe"
     >
-  </textarea>
+   </textarea>
+  <small *ngIf="submited && name.hasError('minlength')" class="text-danger">
+    * o nome do produto tem que ter no mínimo três caracteres
+  </small>
+  <small *ngIf="submited && name.hasError('required')" class="text-danger">
+  * o Nome é requerido
+</small>
+</div>
   <div class="row">
     <div class="col-sm-6">
     <label for="preço" class="form-label">Preço</label>
@@ -55,7 +62,6 @@
           class="btn btn-primary"
           (click)="save()"
           >Salvar</button>
-  </div>
   </div>
   </div>
     <h2 class="mt-5 text-center">Produtos</h2>
